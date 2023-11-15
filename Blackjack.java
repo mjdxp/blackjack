@@ -233,6 +233,22 @@ public class Blackjack {
           playerTotal = addPlayerCards(playerCardCount);
           dealerTotal = addDealerCards(dealerCardCount);
           
+          // Check bust
+          if (playerTotal > 21) {
+            System.out.println("\nBust!");
+            Thread.sleep(sleepTime);
+            System.out.println("Lost $" + bet*2 + ".");
+            money = money - bet*2;
+            roundLoop = false;
+            break;
+          } else if (playerTotal == 21) {
+            System.out.println("\nBlackjack!");
+            Thread.sleep(sleepTime);
+            System.out.println("Won $" + bet*2 + ".");
+            money = money + bet*2;
+            roundLoop = false;
+            break;
+          }
           // If the dealer has 16 or less cards, it will hit
           if (dealerTotal <= 16) {
             dealerTotal = dealerHit(playerTotal);
